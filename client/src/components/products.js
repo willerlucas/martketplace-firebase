@@ -4,9 +4,19 @@ import firebaseDb from "../firebase";
 const { default: ProductsForm } = require("./productsForm")
 
 const Products = () => {
-
+    
+    var [values, setValues] = useState({})
     var [productsObjects, setProductsObjects] = useState({})
     var [currentId, setCurrentId] = useState('')
+    var list = Object.keys(productsObjects)
+    
+    const handleInputChange = e => {
+        var {name, value} = e.target
+        setValues({
+            ...values,
+            [name]: value
+        })
+    }
 
     useEffect(() => {
         firebaseDb.child('products').on('value', snapshot => {
@@ -58,47 +68,51 @@ const Products = () => {
         <>
             <div class="jumbotron jumbotron-fluid">
                     <div class="container">
-                        <h1 class="display-4  text-center">Products Register</h1>
+                        <h1 class="display-4  text-center">Product Register</h1>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-md-5">
+                
+                    <div>
                         <ProductsForm {...({ AddOrEdit, currentId, productsObjects })}/>
                     </div>
-                    <div className="col-md-7">
-                        <table className="table table-borderless table-stripped">
-                            <thead className="thead-light">
-                                <tr>
-                                    <th>Product Name</th>
-                                    <th>Price</th>
-                                    <th>Amount</th>
-                                    <th>Image Link</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <form>
+                    <div className="form-row">
+                        <div className="form-group input-group col-md-12">
+                            <input className="form-control" placeholder="Product to Search" name="search"
+                             value={values.search} onChange={handleInputChange}/>
+                        </div>
+                    </div>
+                </form>
+                    <div>
+
                                 {
-                                    Object.keys(productsObjects).map(id => {
-                                        return <tr key={id}>
-                                            <td>{productsObjects[id].productName}</td>
-                                            <td>{productsObjects[id].price}</td>
-                                            <td>{productsObjects[id].amount}</td>
-                                            <td>{productsObjects[id].image}</td>
-                                            <td>
-                                                <a className="btn text-primary" onClick={() => { setCurrentId(id) }}>
+                                    
+                                    list.map(id => {
+                                        return <div class="card" key={id}>
+                                        <div class="card-body">
+                                        
+                                          <div className="row">
+                                              <h2 class="card-title">{productsObjects[id].productName}</h2> 
+                                              <a className="btn text-primary" onClick={() => { setCurrentId(id) }}>
                                                     <i className="fas fa-pencil-alt"></i>
                                                 </a>
                                                 <a className="btn text-primary" onClick={() => { onDelete(id) }}>
                                                     <i className="fas fa-trash-alt"></i>
                                                 </a>
-                                            </td>
-                                        </tr>
+                                          </div>
+                                            <h5>Amount: {productsObjects[id].amount} | Price: ${productsObjects[id].price}</h5>                  
+                                                
+                                        </div>
+                                      </div>
+                                        
+                    
                                     })
                                 }
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
+                
+
+
+
         </>
     );
 }
