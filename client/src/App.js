@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import Products from './components/products';
 
+var path = require('path');
+
 function App(){
   return(
     <div className="row">
