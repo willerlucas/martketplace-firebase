@@ -5,8 +5,10 @@ const initialFieldValues ={
     productName:'',
     amount:'',
     price:'',
-    image:''
+    image:'',
+    search:''
 }
+
 
 var [values, setValues] = useState(initialFieldValues)
 
@@ -33,6 +35,8 @@ const handleFormSubmit = e => {
         e.preventDefault();
         props.AddOrEdit(values)
 }
+
+
 
     return(
             <form autoComplete="off" onSubmit={handleFormSubmit}>
@@ -81,6 +85,7 @@ const handleFormSubmit = e => {
                     <input type="submit" value={props.currentId=='' ? "Save" : "Update"} className="btn btn-primary btn-block"/>
                 </div>
                 <hr></hr>
+               
                 </form>
     );
 }

@@ -5,7 +5,7 @@ import "./Cards.css"
 const { default: ProductsForm } = require("./productsForm")
 
 const Products = () => {
-    
+
     var [values, setValues] = useState({})
     var [productsObjects, setProductsObjects] = useState({})
     var [currentId, setCurrentId] = useState('')
@@ -76,13 +76,16 @@ const Products = () => {
                     <div>
                         <ProductsForm {...({ AddOrEdit, currentId, productsObjects })}/>
                     </div>
-                    <form>
-                    <div className="form-row">
-                        <div className="form-group input-group col-md-12">
-                            <input className="form-control" placeholder="Search Product" name="search"
-                             value={values.search} onChange={handleInputChange}/>
+                    <div className="form-group input-group">
+                    <div className="input-group-prepand">
+                        <div className="input-group-text">
+                            <i className="fas fa-search"></i>
                         </div>
                     </div>
+                    <input className="form-control" placeholder="Search" name="search"  alt=" "
+                    value={values.search}/>
+                </div>
+                    <form>
                 </form>
                     <div className="grid">
 
