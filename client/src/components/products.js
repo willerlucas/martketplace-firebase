@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import productsForm from "./productsForm";
 import firebaseDb from "../firebase";
+import "./Cards.css"
 const { default: ProductsForm } = require("./productsForm")
 
 const Products = () => {
@@ -78,17 +79,18 @@ const Products = () => {
                     <form>
                     <div className="form-row">
                         <div className="form-group input-group col-md-12">
-                            <input className="form-control" placeholder="Product to Search" name="search"
+                            <input className="form-control" placeholder="Search Product" name="search"
                              value={values.search} onChange={handleInputChange}/>
                         </div>
                     </div>
                 </form>
-                    <div>
+                    <div className="grid">
 
                                 {
-                                    
+                                   
                                     list.map(id => {
-                                        return <div class="card" key={id}>
+                                        return <div class="cards" key={id}>
+                                        <img src={productsObjects[id].image} class="card-img-top" alt="..."></img>
                                         <div class="card-body">
                                         
                                           <div className="row">
