@@ -7,8 +7,6 @@ this app is a study on React, so there will be updates as the studies continue.
 
 ## Installation and Setup Instructions
 
-#### Example:  
-
 Clone down this repository. You will need `node` and `npm` installed globally on your machine.  
 
 
