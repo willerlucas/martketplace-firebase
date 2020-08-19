@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import productsForm from "./productsForm";
+// import productsForm from "./productsForm";
 import firebaseDb from "../firebase";
 import "./Cards.css"
 const { default: ProductsForm } = require("./productsForm")
 
 const Products = () => {
 
-    var [values, setValues] = useState({})
+  //  var [values, setValues] = useState({})
 
     var [productsObjects, setProductsObjects] = useState({})
 
