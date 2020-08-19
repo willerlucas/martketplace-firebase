@@ -1,5 +1,9 @@
 import * as firebase from "firebase";
 
+
+
+//this database no longer exists !!
+
 var firebaseConfig = {
     apiKey: "AIzaSyAWqKrVBDmEGFn9s6iq_3LvmSm64nMC3RI",
     authDomain: "dbmarketplace-fd440.firebaseapp.com",
